@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Security;
-using System.Xml.Serialization;
-using System.Runtime.Serialization;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Security;
+using System.Text;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Cnp.Sdk
 {
@@ -78,6 +79,7 @@ namespace Cnp.Sdk
         public voidTxn voidTxn;
         public translateToLowValueTokenRequest translateToLowValueTokenRequest;
         public realtimeIncrementalAuthorization realtimeIncrementalAuthorization;
+        public queryDpoWalletBalance queryDpoWalletBalance;
 
         // Serialize the cnpOnlineRequest.
         // Convert the cnpOnlineRequest object to xml string.
@@ -152,6 +154,7 @@ namespace Cnp.Sdk
             else if (BNPLInquiryRequest != null) xml += BNPLInquiryRequest.Serialize();
             else if (encryptionKeyRequest != null) xml += encryptionKeyRequest.Serialize();
             else if (realtimeIncrementalAuthorization != null) xml += realtimeIncrementalAuthorization.Serialize();
+            else if (queryDpoWalletBalance != null) xml += queryDpoWalletBalance.Serialize();
             xml += "\r\n</cnpOnlineRequest>";
 
             return xml;
@@ -2090,6 +2093,8 @@ namespace Cnp.Sdk
 
         public merchantDataType merchantData;
 
+        public identityBundle identityBundle;
+
         public override string Serialize()
         {
             var xml = "\r\n<echeckCredit";
@@ -2108,6 +2113,10 @@ namespace Cnp.Sdk
                 if (secondaryAmountSet) xml += "\r\n<secondaryAmount>" + secondaryAmountField + "</secondaryAmount>";
                 if (customBilling != null) xml += "\r\n<customBilling>" + customBilling.Serialize() + "</customBilling>";
                 if (customIdentifier != null) xml += "\r\n<customIdentifier>" + customIdentifier + "</customIdentifier>";
+                if (identityBundle != null) //12.50
+                {
+                    xml += "\r\n<identityBundle>" + identityBundle.Serialize() + "</identityBundle>";
+                }
             }
             else
             {
@@ -2122,6 +2131,10 @@ namespace Cnp.Sdk
                 if (customBilling != null) xml += "\r\n<customBilling>" + customBilling.Serialize() + "</customBilling>";
                 if (merchantData != null) xml += "\r\n<merchantData>" + merchantData.Serialize() + "</merchantData>";
                 if (customIdentifier != null) xml += "\r\n<customIdentifier>" + customIdentifier + "</customIdentifier>";
+                          if (identityBundle != null) //12.50
+                {
+                    xml += "\r\n<identityBundle>" + identityBundle.Serialize() + "</identityBundle>";
+                }
             }
             xml += "\r\n</echeckCredit>";
             return xml;
@@ -2136,6 +2149,8 @@ namespace Cnp.Sdk
         public echeckTokenType token;
         public merchantDataType merchantData;
         public string customIdentifier;
+        public identityBundle identityBundle;
+
 
         public override string Serialize()
         {
@@ -2151,6 +2166,10 @@ namespace Cnp.Sdk
             else if (token != null) xml += "\r\n<echeckToken>" + token.Serialize() + "</echeckToken>";
             if (merchantData != null) { xml += "\r\n<merchantData>" + merchantData.Serialize() + "\r\n</merchantData>"; }
             if (customIdentifier != null) xml += "\r\n<customIdentifier>" + customIdentifier + "</customIdentifier>";
+            if (identityBundle != null) //12.50
+            {
+                xml += "\r\n<identityBundle>" + identityBundle.Serialize() + "</identityBundle>";
+            }
             xml += "\r\n</echeckRedeposit>";
             return xml;
         }
@@ -2197,6 +2216,7 @@ namespace Cnp.Sdk
         public echeckType echeck;
         public echeckTokenType token;
         public merchantDataType merchantData;
+        public identityBundle identityBundle;
 
         public override string Serialize()
         {
@@ -2233,6 +2253,10 @@ namespace Cnp.Sdk
                 if (customBilling != null) xml += "\r\n<customBilling>" + customBilling.Serialize() + "</customBilling>";
                 if (merchantData != null) xml += "\r\n<merchantData>" + merchantData.Serialize() + "</merchantData>";
                 if (customIdentifier != null) xml += "\r\n<customIdentifier>" + customIdentifier + "</customIdentifier>";
+                if (identityBundle != null)  //12.50
+                {
+                    xml += "\r\n<identityBundle>" + identityBundle.Serialize() + "</identityBundle>";
+                }
             }
             xml += "\r\n</echeckSale>";
             return xml;
@@ -3928,7 +3952,7 @@ namespace Cnp.Sdk
 
     // Reserve Credit Transaction. Implemented in CnpBatchRequest.
 
-    // Reserve Debit Transaction. Implemented in CnpBatchRequest.
+    // Reserve Debit Transaction. Implemented in CnpBatchRequestecheckVoid
 
     // Vendor Credit Transaction. Implemented in CnpBatchRequest.
 
@@ -3951,7 +3975,7 @@ namespace Cnp.Sdk
         private bool fulfilmentMethodTypeSet;
         private orderChannelEnum orderChannelField; ///12.24
         private bool orderChannelSet;
-
+      
         public actionTypeEnum origActionType
         {
             get
@@ -6092,6 +6116,11 @@ namespace Cnp.Sdk
         public static readonly orderSourceType applepay = new orderSourceType("applepay");
         public static readonly orderSourceType androidpay = new orderSourceType("androidpay");
         public static readonly orderSourceType ecommerceDataOnly = new orderSourceType("ecommerceDataOnly");  //12.44
+        public static readonly orderSourceType paze = new orderSourceType("paze");  //12.50
+        public static readonly orderSourceType samsungpay = new orderSourceType("samsungpay");  //12.50
+        public static readonly orderSourceType amazonpay = new orderSourceType("amazonpay");  //12.50
+        public static readonly orderSourceType googlepay = new orderSourceType("googlepay");  //12.50
+
         private orderSourceType(string value) { this.value = value; }
         public string Serialize() { return value; }
         private string value;
@@ -8187,6 +8216,24 @@ namespace Cnp.Sdk
             return xml;
         }
     }
+
+    public partial class queryDpoWalletBalance : transactionTypeWithReportGroup
+    {
+
+        public override string Serialize()
+        {
+            var xml = "\r\n<queryDpoWalletBalance";
+            xml += " id=\"" + SecurityElement.Escape(id) + "\"";
+            if (customerId != null)
+            {
+                xml += " customerId=\"" + SecurityElement.Escape(customerId) + "\"";
+            }
+            xml += " reportGroup=\"" + SecurityElement.Escape(reportGroup) + "\"/>";
+            return xml;
+        }
+
+    }
+    
 
     //v12.41
     public partial class identityBundle

@@ -2260,7 +2260,7 @@ namespace Cnp.Sdk
         }
     }
 
-    public partial class vendorCredit : transactionTypeWithReportGroup
+    public partial class vendorCredit : transactionTypeWithReportGroupAndRtp
     {
 
         public string fundingSubmerchantId { get; set; }

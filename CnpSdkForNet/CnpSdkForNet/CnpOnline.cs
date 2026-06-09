@@ -405,6 +405,10 @@ namespace Cnp.Sdk
             {
                 request.realtimeIncrementalAuthorization = (realtimeIncrementalAuthorization)transaction;
             }
+            else if(transaction is queryDpoWalletBalance)
+            {
+                request.queryDpoWalletBalance = (queryDpoWalletBalance)transaction;
+            }
             else
             {
                 throw new NotImplementedException("Support for type: " + transaction.GetType().Name +
@@ -1263,6 +1267,23 @@ namespace Cnp.Sdk
                 return encryptionKeyResponse;
             }, encryptionKey, cancellationToken);
         }
+        public Task<queryDpoWalletBalanceResponse> QueryDpoWalletAsync(queryDpoWalletBalance queryDpoWalletBalance, CancellationToken cancellationToken)
+        {
+            return SendRequestAsync(response =>
+            {
+                var QueryDpoWalletBalanceResponse= response.queryDpoWalletBalanceResponse;
+                return QueryDpoWalletBalanceResponse;
+            }, queryDpoWalletBalance, cancellationToken);
+        }
+        public queryDpoWalletBalanceResponse QueryDpo(queryDpoWalletBalance queryDpoWalletBalance)
+        {
+
+            var cnpResponse = SendRequest(response => response, queryDpoWalletBalance);
+            var QueryDpoWalletBalanceResponse = cnpResponse.queryDpoWalletBalanceResponse;
+            return QueryDpoWalletBalanceResponse;
+        }
+
+
         private cnpOnlineRequest CreateCnpOnlineRequest()
         {
             var request = new cnpOnlineRequest();
@@ -1274,6 +1295,8 @@ namespace Cnp.Sdk
             request.authentication = authentication;
             return request;
         }
+
+
 
         private cnpOnlineResponse SendToCnp(cnpOnlineRequest request)
         {
@@ -1607,7 +1630,10 @@ namespace Cnp.Sdk
         BNPLInquiryResponse BNPLInquiry(BNPLInquiryRequest bnplInquiry);
         Task<BNPLInquiryResponse> BNPLInquiryAsync(BNPLInquiryRequest bnplInquiry, CancellationToken cancellationToken);
         encryptionKeyResponse EncryptionKey(EncryptionKeyRequest encryptionKey);
-        Task<encryptionKeyResponse> EncryptionKeyAsync(EncryptionKeyRequest encryptionKey, CancellationToken cancellationToken);
+        Task<encryptionKeyResponse> EncryptionKeyAsync(EncryptionKeyRequest encryptionKey,CancellationToken cancellationToken);
+        queryDpoWalletBalanceResponse QueryDpo(queryDpoWalletBalance queryDpoWalletBalance);
+        Task<queryDpoWalletBalanceResponse> QueryDpoWalletAsync(queryDpoWalletBalance queryDpoWalletBalance, CancellationToken cancellationToken);
+       
         event EventHandler HttpAction;
     }
 }

@@ -1445,7 +1445,7 @@ namespace Cnp.Sdk.Test.Functional
                 reportGroup = "Planets",
                 orderId = "12344",
                 amount = 106,
-                orderSource = orderSourceType.ecommerceDataOnly,
+                orderSource = orderSourceType.paze,
                 pazeEncryptedPayload = "NDEwMDAwMDAwMDAwMDAwMQ==",
                 preferredCustomer = false
             };

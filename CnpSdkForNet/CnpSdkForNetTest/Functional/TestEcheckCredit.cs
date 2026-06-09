@@ -204,7 +204,19 @@ namespace Cnp.Sdk.Test.Functional
                 amount = 12L,
                 secondaryAmount = 50,
                 cnpTxnId = 12345L,
-                customIdentifier = "CustomIdent"
+                customIdentifier = "CustomIdent",
+                identityBundle = new identityBundle
+                {
+                    merchantId = "2222",
+                    entityId = "3333",
+                    entityReference = "3batchauthandcapture",
+                    resourceId = "12",
+                    resourceReference = "111111111111111",
+                    commandId = "111",
+                    commandReference = "12345",
+                    orderReference = "123"
+
+                }
             };
             
             var response = _cnp.EcheckCredit(echeckcredit);

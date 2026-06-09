@@ -6111,6 +6111,7 @@ namespace Cnp.Sdk
         public BNPLCancelResponse BNPLCancelResponse;
         public BNPLInquiryResponse BNPLInquiryResponse;
         public encryptionKeyResponse encryptionKeyResponse;
+        public queryDpoWalletBalanceResponse queryDpoWalletBalanceResponse;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -12733,6 +12734,146 @@ namespace Cnp.Sdk
 
     }
 
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.vantivcnp.com/schema")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.vantivcnp.com/schema", IsNullable = false)]
+    public partial class queryDpoWalletBalanceResponse : transactionTypeWithReportGroup
+    {
+
+        private long cnpTxnIdField;
+
+        private string responseField;
+
+        private System.DateTime responseTimeField;
+
+        private string messageField;
+
+        private long projectedAvailableBalanceFeild;
+
+        private long reserveBalanceFeild;
+
+        private long availableRtpBalanceFeild;
+
+        private System.DateTime asOfDateFeild;
+
+        private System.DateTime lastUpdatedDateFeild;
+
+        /// <remarks/>
+        public long cnpTxnId
+        {
+            get
+            {
+                return this.cnpTxnIdField;
+            }
+            set
+            {
+                this.cnpTxnIdField = value;
+            }
+        }
+
+        /// <remarks/>
+        public string response
+        {
+            get
+            {
+                return this.responseField;
+            }
+            set
+            {
+                this.responseField = value;
+            }
+        }
+
+        /// <remarks/>
+        public System.DateTime responseTime
+        {
+            get
+            {
+                return this.responseTimeField;
+            }
+            set
+            {
+                this.responseTimeField = value;
+            }
+        }
+
+        /// <remarks/>
+        public string message
+        {
+            get
+            {
+                return this.messageField;
+            }
+            set
+            {
+                this.messageField = value;
+            }
+        }
+
+        public long projectedAvailableBalance
+        {
+            get
+            {
+                return this.projectedAvailableBalanceFeild;
+            }
+            set
+            {
+                this.projectedAvailableBalanceFeild = value;
+            }
+        }
+
+        public long reserveBalance
+        {
+            get
+            {
+                return this.reserveBalanceFeild;
+            }
+            set
+            {
+                this.reserveBalanceFeild = value;
+            }
+        }
+        public long availableRtpBalance
+        {
+            get
+            {
+                return this.availableRtpBalanceFeild;
+            }
+            set
+            {
+                this.availableRtpBalanceFeild = value;
+            }
+        }
+
+        public System.DateTime asOfDate
+        {
+            get
+            {
+                return this.asOfDateFeild;
+            }
+            set
+            {
+                this.asOfDateFeild = value;
+            }
+        }
+     
+        public System.DateTime lastUpdatedDate
+        {
+            get
+            {
+                return this.lastUpdatedDateFeild;
+            }
+            set
+            {
+                this.lastUpdatedDateFeild = value;
+            }
+        }
+
+
+    }
 
 }
 

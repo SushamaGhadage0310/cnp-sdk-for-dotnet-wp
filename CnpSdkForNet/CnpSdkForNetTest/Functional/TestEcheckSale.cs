@@ -93,7 +93,8 @@ namespace Cnp.Sdk.Test.Functional
                     descriptor = "good",
                 },
                 customIdentifier = "ident",
-                orderId = "12345"
+                orderId = "12345",
+                
             };
 
             var response = _cnp.EcheckSale(echeckSaleObj);
@@ -105,6 +106,7 @@ namespace Cnp.Sdk.Test.Functional
         {
             var echeckSaleObj = new echeckSale
             {
+       
                 id = "1",
                 reportGroup = "Planets",
                 orderId = "1",
@@ -146,7 +148,19 @@ namespace Cnp.Sdk.Test.Functional
                     merchantGroupingId = "Merchant Group ID"
 
                 },
-                customIdentifier = "ident"
+                customIdentifier = "ident",
+                identityBundle = new identityBundle
+                {
+                    merchantId = "2222",
+                    entityId = "3333",
+                    entityReference = "3batchauthandcapture",
+                    resourceId = "12",
+                    resourceReference = "111111111111111",
+                    commandId = "111",
+                    commandReference = "12345",
+                    orderReference = "123"
+
+                }
             };
 
             var response = _cnp.EcheckSale(echeckSaleObj);
