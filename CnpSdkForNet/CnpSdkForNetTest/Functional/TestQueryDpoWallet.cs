@@ -26,7 +26,7 @@ namespace Cnp.Sdk.Test.Functional
 
             };
 
-            var responseObj = _cnp.QueryDpo(queryDpoWallet);
+            var responseObj = _cnp.QueryDpoWalletBalance(queryDpoWallet);
             StringAssert.AreEqualIgnoringCase("Generic Decline", responseObj.message);
         }
     }

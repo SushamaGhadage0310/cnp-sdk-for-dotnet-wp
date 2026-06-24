@@ -1267,7 +1267,7 @@ namespace Cnp.Sdk
                 return encryptionKeyResponse;
             }, encryptionKey, cancellationToken);
         }
-        public Task<queryDpoWalletBalanceResponse> QueryDpoWalletAsync(queryDpoWalletBalance queryDpoWalletBalance, CancellationToken cancellationToken)
+        public Task<queryDpoWalletBalanceResponse> QueryDpoWalletBalanceAsync(queryDpoWalletBalance queryDpoWalletBalance, CancellationToken cancellationToken)
         {
             return SendRequestAsync(response =>
             {
@@ -1275,7 +1275,7 @@ namespace Cnp.Sdk
                 return QueryDpoWalletBalanceResponse;
             }, queryDpoWalletBalance, cancellationToken);
         }
-        public queryDpoWalletBalanceResponse QueryDpo(queryDpoWalletBalance queryDpoWalletBalance)
+        public queryDpoWalletBalanceResponse QueryDpoWalletBalance(queryDpoWalletBalance queryDpoWalletBalance)
         {
 
             var cnpResponse = SendRequest(response => response, queryDpoWalletBalance);
@@ -1631,8 +1631,8 @@ namespace Cnp.Sdk
         Task<BNPLInquiryResponse> BNPLInquiryAsync(BNPLInquiryRequest bnplInquiry, CancellationToken cancellationToken);
         encryptionKeyResponse EncryptionKey(EncryptionKeyRequest encryptionKey);
         Task<encryptionKeyResponse> EncryptionKeyAsync(EncryptionKeyRequest encryptionKey,CancellationToken cancellationToken);
-        queryDpoWalletBalanceResponse QueryDpo(queryDpoWalletBalance queryDpoWalletBalance);
-        Task<queryDpoWalletBalanceResponse> QueryDpoWalletAsync(queryDpoWalletBalance queryDpoWalletBalance, CancellationToken cancellationToken);
+        queryDpoWalletBalanceResponse QueryDpoWalletBalance(queryDpoWalletBalance queryDpoWalletBalance);
+        Task<queryDpoWalletBalanceResponse> QueryDpoWalletBalanceAsync(queryDpoWalletBalance queryDpoWalletBalance, CancellationToken cancellationToken);
        
         event EventHandler HttpAction;
     }

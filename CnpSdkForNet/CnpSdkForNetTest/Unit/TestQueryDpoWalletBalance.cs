@@ -41,7 +41,7 @@ namespace Cnp.Sdk.Test.Unit
             }
             var mockedCommunication = mock.Object;
             cnp.SetCommunication(mockedCommunication);
-            var queryDpoWalletBalanceResponse = cnp.QueryDpo(queryDpoWallet);
+            var queryDpoWalletBalanceResponse = cnp.QueryDpoWalletBalance(queryDpoWallet);
 
             Assert.NotNull(queryDpoWalletBalanceResponse);
             Assert.AreEqual(123, queryDpoWalletBalanceResponse.cnpTxnId);
