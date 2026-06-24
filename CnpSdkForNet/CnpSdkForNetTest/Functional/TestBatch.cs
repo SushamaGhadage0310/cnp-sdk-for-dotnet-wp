@@ -839,6 +839,16 @@ namespace Cnp.Sdk.Test.Functional
             billToAddress.state = "MA";
             billToAddress.email = "cnp.com";
             echeckcredit.billToAddress = billToAddress;
+            var identityBundle = new identityBundle();
+            identityBundle.merchantId = "2222";
+            identityBundle.entityId = "3333";
+            identityBundle.entityReference = "3batchauthandcapture";
+            identityBundle.resourceId = "12";
+            identityBundle.resourceReference = "111111111111111";
+            identityBundle.commandId = "111";
+            identityBundle.commandReference = "12345";
+            identityBundle.orderReference = "124";
+            echeckcredit.identityBundle = identityBundle;
 
             cnpBatchRequest.addEcheckCredit(echeckcredit);
             try
@@ -1389,6 +1399,7 @@ namespace Cnp.Sdk.Test.Functional
             billToAddress2.state = "MA";
             billToAddress2.email = "cnp.com";
             echeckcredit2.billToAddress = billToAddress2;
+
 
             cnpBatchRequest.addEcheckCredit(echeckcredit2);
 

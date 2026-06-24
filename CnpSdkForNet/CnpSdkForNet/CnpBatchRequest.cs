@@ -2260,7 +2260,7 @@ namespace Cnp.Sdk
         }
     }
 
-    public partial class vendorCredit : transactionTypeWithReportGroup
+    public partial class vendorCredit : transactionTypeWithReportGroupAndRtp
     {
 
         public string fundingSubmerchantId { get; set; }
@@ -2285,7 +2285,12 @@ namespace Cnp.Sdk
                 xml += "id=\"" + SecurityElement.Escape(id) + "\" ";
             if (customerId != null)
                 xml += "customerId=\"" + SecurityElement.Escape(customerId) + "\" ";
-            xml += "reportGroup=\"" + SecurityElement.Escape(reportGroup) + "\">";
+            xml += "reportGroup=\"" + SecurityElement.Escape(reportGroup) + "\" ";
+            if (rtpSet)
+            {
+                xml += " rtp=\"" + rtp.ToString().ToLower() + "\"";
+            }
+            xml += ">";
             if (fundingSubmerchantId != null)
                 xml += "\r\n<fundingSubmerchantId>" + SecurityElement.Escape(fundingSubmerchantId) + "</fundingSubmerchantId>";
             else if (fundingCustomerId != null)

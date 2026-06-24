@@ -1426,7 +1426,7 @@ namespace Cnp.Sdk.Test.Unit
             var auth = new authorization();
             auth.orderId = "12344";
             auth.amount = 2;
-            auth.orderSource = orderSourceType.ecommerceDataOnly;
+            auth.orderSource = orderSourceType.paze;
             var card = new cardType();
             card.type = methodOfPaymentTypeEnum.MC;
             card.number = "414100000000000000";
@@ -1459,7 +1459,7 @@ namespace Cnp.Sdk.Test.Unit
             }
             else
             {
-                mock.Setup(Communications => Communications.HttpPost(It.IsRegex(".*<amount>2</amount>\r\n<orderSource>ecommerceDataOnly</orderSource>.*", RegexOptions.Singleline)))
+                mock.Setup(Communications => Communications.HttpPost(It.IsRegex(".*<amount>2</amount>\r\n<orderSource>paze</orderSource>.*<identityBundle>.*</identityBundle>.*", RegexOptions.Singleline)))
                 .Returns("<cnpOnlineResponse version='12.46' response='0' message='Valid Format' xmlns='http://www.vantivcnp.com/schema'><authorizationResponse><cnpTxnId>123</cnpTxnId></authorizationResponse></cnpOnlineResponse>");
             }
             var mockedCommunication = mock.Object;
