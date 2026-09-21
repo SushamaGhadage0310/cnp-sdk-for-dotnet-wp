@@ -26,6 +26,7 @@ namespace Cnp.Sdk
         // exposed merchantId for organizations with multiple Merchant Ids.
         private string _merchantId;
 
+        private bool sameDayFunding = false;
         /**
          * Construct a Cnp online using the configuration specified in CnpSdkForNet.dll.config
          */
@@ -413,6 +414,10 @@ namespace Cnp.Sdk
             return request;
         }
 
+        public void SameDayFunding(bool setSameDayFunding)
+        {
+            sameDayFunding = setSameDayFunding;
+        }
         public authorizationResponse Authorize(authorization auth)
         {
             var cnpResponse =  SendRequest(response => response, auth);
@@ -1268,6 +1273,7 @@ namespace Cnp.Sdk
             var request = new cnpOnlineRequest();
             request.merchantSdk = "DotNet;" + CnpVersion.CurrentCNPSDKVersion;
             request.merchantId = _merchantId ?? _config["merchantId"];
+            request.sameDayFunding = sameDayFunding;
             var authentication = new authentication();
             authentication.password = _config["password"];
             authentication.user = _config["username"];

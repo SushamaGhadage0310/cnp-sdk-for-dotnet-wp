@@ -78,6 +78,7 @@ namespace Cnp.Sdk
         public voidTxn voidTxn;
         public translateToLowValueTokenRequest translateToLowValueTokenRequest;
         public realtimeIncrementalAuthorization realtimeIncrementalAuthorization;
+        public bool sameDayFunding;
 
         // Serialize the cnpOnlineRequest.
         // Convert the cnpOnlineRequest object to xml string.
@@ -85,8 +86,8 @@ namespace Cnp.Sdk
         {
             // Create header for the cnpOnlineRequest with user credential.
             var xml = "<?xml version='1.0' encoding='utf-8'?>\r\n<cnpOnlineRequest merchantId=\"" + merchantId
-                + "\" version=\"" + CnpVersion.CurrentCNPXMLVersion + "\" merchantSdk=\"" + merchantSdk + "\" xmlns=\"http://www.vantivcnp.com/schema\">"
-                + authentication.Serialize();
+            + "\" version=\"" + CnpVersion.CurrentCNPXMLVersion + "\" merchantSdk=\"" + merchantSdk + "\" sameDayFunding=\"" + sameDayFunding.ToString().ToLower() + "\" xmlns=\"http://www.vantivcnp.com/schema\">"
+            + authentication.Serialize();
 
             // Because an online request can contain only one transaction, it assumes that only one instance variable of 
             // this cnpOnlineRequest is not null, and the rest are null.

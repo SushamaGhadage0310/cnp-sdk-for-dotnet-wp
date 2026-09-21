@@ -20,7 +20,7 @@ namespace Cnp.Sdk.Test.Functional
         public void SimpleBatch()
         {
             var cnpBatchRequest = new batchRequest();
-
+            cnpBatchRequest.SameDayFunding(true);
             var authorization = new authorization
             {
                 reportGroup = "Planets",
