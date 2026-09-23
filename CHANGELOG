@@ -1,6 +1,10 @@
 ﻿
 = Worldpay CNP CHANGELOG
 
+==Change Log for 12.50.1 (September 22,2026)
+Change: [cnpAPI v12.50.1] Added 'sameDayFunding ' element for online transactions.
+
+==Change Log for 12.50
 Change: [cnpAPI v12.50]: New enumeration values-paze,samsungpay,amazonpay,googlepay added in existing enum orderSourceType.
 Change: [cnpAPI v12.50]: New request queryDpoWalletBalance is added to the online xsd
 Change: [cnpAPI v12.50]: New response queryDpoWalletBalanceResponse added to respond back for queryDpoWalletBalance

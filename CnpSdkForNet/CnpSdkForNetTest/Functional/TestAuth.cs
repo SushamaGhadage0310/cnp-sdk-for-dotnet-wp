@@ -21,6 +21,7 @@ namespace Cnp.Sdk.Test.Functional
         [Test]
         public void SimpleAuthWithCard()
         {
+            _cnp.SameDayFunding(true);
             var authorization = new authorization
             {
                 id = "1",
