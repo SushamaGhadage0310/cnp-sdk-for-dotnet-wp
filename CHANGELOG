@@ -1,6 +1,10 @@
 ﻿
 = Worldpay CNP CHANGELOG
 
+
+==Change Log for 12.51 (September 24,2026)
+Change: [cnpAPI v12.51.0] In existing element 'batchTotalAmountType' totalDigits changed from '10' to '12'  
+
 ==Change Log for 12.50.1 (September 22,2026)
 Change: [cnpAPI v12.50.1] Added 'sameDayFunding ' element for online transactions.
 
