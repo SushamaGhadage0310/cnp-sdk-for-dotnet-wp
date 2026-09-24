@@ -1674,7 +1674,8 @@ namespace Cnp.Sdk.Test.Functional
                 {
                     authDate = new DateTime(2002, 10, 9),
                     authCode = "543216",
-                    authAmount = 12345,
+                    //authAmount = 123456789101,
+                    authAmount = 1234,
                 },
                 orderSource = orderSourceType.ecommerce,
                 card=authorization.card,
